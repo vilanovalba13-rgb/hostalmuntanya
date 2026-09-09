@@ -1,0 +1,1031 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;   /* evita qualsevol desplaçament horitzontal no desitjat */
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  width: 100%;
+  max-width: 1600px;      /* límit d'ample */
+  margin: 0 auto;          /* centrat */
+  padding: 15px 40px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;                /* perquè el centrat amb fixed funcioni */
+  z-index: 999;
+  gap: 30px;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 70px;   /* abaixa aquest valor (p.ex. 26px) si el vols encara més petit */
+  width: auto;
+  display: block;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #496833;
+  font-size: clamp(15px, 1.1vw, 18px); 
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: #e0964b;
+}
+
+.btn-reserva {
+  background-color: #496833;
+  color: #e0964b;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.2s;
+  white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+  display: inline-block;
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.btn-reserva:hover {
+  background-color: #e0964b;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(224, 150, 75, 0.4);
+}
+
+/* ---------- FRANJA / SECCIÓ VERDA SOTA EL MENÚ ---------- */
+.hero-verda {
+  width: 100%;
+  padding-top: 76px; /* alçada del menú fix */
+  box-sizing: border-box;
+}
+
+.hero-verda-inner {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  min-height: calc(100vh - 76px); /* ocupa tota la pantalla menys el menú */
+  display: grid;
+  grid-template-columns: 40% 60%;
+  align-items: stretch;
+  gap: 0;
+}
+
+@media (max-width: 860px) {
+  .hero-verda-inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+}
+
+/* costat esquerre: logo + text + botó */
+.hero-left {
+  background-color: #496833;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 40px 6%;
+}
+
+.hero-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-logo-img {
+  width: clamp(220px, 24vw, 430px);
+  height: auto;
+  display: block;
+}
+
+.hero-logo-icon {
+  width: clamp(110px, 11vw, 190px);   /* una mica més gran que abans */
+  height: auto;
+  margin-bottom: 4px;
+}
+
+.hero-logo-wordmark {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.hero-logo-year {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 10px;
+  font-weight: 600;
+  color: #cfe0c8;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.hero-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.hero-logo-sub {
+  font-size: clamp(12px, 1vw, 15px);
+  font-weight: 600;
+  color: #e0964b;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+}
+
+.hero-logo-main {
+  font-size: clamp(26px, 2.8vw, 40px);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.btn-reserva-hero {
+  padding: 12px 24px;
+  font-size: 15px;
+  background-color: #e0964b;
+  color: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+
+}
+
+.btn-reserva-hero:hover {
+  background-color: #c97c34;
+}
+
+/* costat dret: imatge */
+.hero-right {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 76px);
+  overflow: hidden;
+  background-color: #1f351f;
+}
+
+.hero-right img {
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 76px);
+  object-fit: cover;
+  display: block;
+}
+
+.hero-right-note {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 9px;
+  border-radius: 5px;
+  display: none;
+}
+
+
+/* si la imatge no es troba, mostrem l'avís en comptes de la caixa buida */
+.hero-right.sense-imatge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-right.sense-imatge .hero-right-note {
+  display: block;
+  position: static;
+  background: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+}
+
+
+/* ===== SECCIÓ: QUI SOM? ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap');
+
+.qui-som-wrapper{
+  width: 100%;
+  background-color: #F2F3EE;
+}
+
+.qui-som{
+  --qs-green: #4b6b3d;
+  --qs-orange: #d98b3f;
+  --qs-text: #2b2b28;
+  --qs-shadow: rgba(0,0,0,0.12);
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 70px 40px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: center;
+  font-family: 'Raleway', sans-serif;
+  color: var(--qs-text);
+}
+
+.qui-som__foto img{
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 18px 40px var(--qs-shadow);
+}
+
+.qui-som__contingut h1{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 3.1rem;
+  color: var(--qs-green);
+  margin: 0 0 18px 0;
+  line-height: 1.05;
+}
+
+.qui-som__contingut h2{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 1.9rem;
+  color: var(--qs-orange);
+  margin: 0 0 26px 0;
+  line-height: 1.25;
+}
+
+.qui-som__contingut p{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: var(--qs-text);
+  margin: 0;
+  max-width: 520px;
+}
+
+@media (max-width: 800px){
+  .qui-som{
+    grid-template-columns: 1fr;
+    padding: 40px 24px;
+    gap: 32px;
+  }
+  .qui-som__contingut h1{ font-size: 2.4rem; }
+  .qui-som__contingut h2{ font-size: 1.5rem; }
+  .qui-som__contingut p{ font-size: 1.1rem; }
+}
+
+/* ===== SECCIÓ: RESTAURANT ===== */
+.restaurant-wrapper{
+  width: 100%;
+  background-color: #496833;
+}
+
+.restaurant{
+  --r-green: #496833;
+  --r-orange: #e0964b;
+  --r-cream: #f2f0e6;
+
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 90px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+  font-family: 'Raleway', sans-serif;
+  color: #ffffff;
+}
+
+.restaurant__contingut h2{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 2.6rem;
+  margin: 0 0 24px 0;
+  color: #ffffff;
+}
+
+.restaurant__contingut p{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin: 0 0 36px 0;
+  max-width: 480px;
+  opacity: 0.95;
+}
+
+.restaurant__parquing{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 40px;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.restaurant__parquing-icona{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: var(--r-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.restaurant__llista{
+  background-color: var(--r-cream);
+  border-radius: 14px;
+  padding: 26px 28px;
+  max-width: 500px;
+}
+
+.restaurant__item{
+  display: flex;
+  flex-wrap: nowrap;        /* 👈 evita que baixi de línia */
+  justify-content: space-between;
+  align-items: center;      /* 👈 centrat vertical, millor que baseline aquí */
+  gap: 16px;                /* 👈 espai mínim entre els dos textos */
+  padding: 12px 0;
+  border-bottom: 1px dashed rgba(73,104,51,0.4);
+  color: var(--r-green);
+  font-size: 1.05rem; 
+}
+
+.restaurant__item:last-child{
+  border-bottom: none;
+}
+
+.restaurant__valor{
+  color: rgba(43,43,40,0.75);
+  font-weight: 400;
+}
+
+.restaurant__icona{
+  width: 55px !important;
+  height: 55px !important;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+/* ---- CARRUSEL ---- */
+.restaurant__carrusel{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: var(--r-green);
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+.restaurant__slides{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: var(--r-green);
+}
+
+.restaurant__slides img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  background-color: var(--r-green);
+  border: none;
+  outline: none;
+}
+
+.restaurant__slides img.active{
+  opacity: 1;
+}
+
+.restaurant__dots{
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.restaurant__dots span{
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  transition: 0.3s;
+}
+
+.restaurant__dots span.active{
+  background: var(--r-orange);
+  transform: scale(1.2);
+}
+
+.restaurant__icona {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  vertical-align: -2px;
+  margin-right: 4px;
+}
+
+.restaurant__item span:first-child{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.restaurant__icona{
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+@media (max-width: 800px){
+  .restaurant{
+    grid-template-columns: 1fr;
+    padding: 50px 24px;
+    gap: 40px;
+  }
+  .restaurant__contingut h2{ font-size: 2rem; }
+}
+
+/* ===== SECCIÓ: LES NOSTRES HABITACIONS ===== */
+.habitacions-wrapper{
+  width: 100%;
+  background-color: #F2F3EE;
+}
+
+.habitacions{
+  --h-green: #4b6b3d;
+  --h-text: #3d5a34;
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 70px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+.habitacions__foto img{
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.habitacions__contingut h2{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  color: var(--h-green);
+  margin: 0 0 22px 0;
+  line-height: 1.1;
+}
+
+.habitacions__contingut p{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--h-text);
+  margin: 0 0 30px 0;
+}
+
+.habitacions__serveis{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 40px;
+}
+
+.habitacions__servei{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--h-green);
+}
+
+.habitacions__icona{
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.habitacions__icona {
+  width: 40px;      /* ajusta la mida que vulguis */
+  height: 40px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+@media (max-width: 800px){
+  .habitacions{
+    grid-template-columns: 1fr;
+    padding: 40px 24px;
+    gap: 32px;
+  }
+  .habitacions__contingut h2{ font-size: 2rem; }
+  .habitacions__serveis{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- SECCIÓ FRASE ---------- */
+.cita {
+  background-color: #496833;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.cita__linia {
+  width: 60px;
+  height: 2px;
+  background-color: #c98a4b;
+  margin: 0 auto 40px;
+}
+
+.cita__text {
+  margin: 0 auto 24px;
+  max-width: 700px;
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.4;
+}
+
+.cita__autor {
+  margin: 0;
+  color: #c98a4b;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ---------- SECCIÓ LOCALITZACIÓ  ---------- */
+.localitzacio {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  background-color: #f2f1ea;
+  padding: 80px 60px;
+  flex-wrap: wrap;
+}
+
+.localitzacio__contingut {
+  flex: 1;
+  min-width: 320px;
+}
+
+.localitzacio__titol {
+  margin: 0 0 32px;
+  color: #496833;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 48px;
+}
+
+.localitzacio__text {
+  margin: 0 0 32px;
+  color: #496833;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.localitzacio__llista {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.localitzacio__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #496833;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.localitzacio__icona {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #496833;
+  flex-shrink: 0;
+}
+
+.localitzacio__icona svg {
+  width: 100%;
+  height: 100%;
+}
+
+.localitzacio__icona{
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.localitzacio__stats {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  border: 2px solid #496833;
+  border-radius: 16px;
+  padding: 16px 24px;
+  min-width: 140px;
+}
+
+.stat__valor {
+  margin: 0 0 4px;
+  color: #1c1c1a;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.stat__label {
+  margin: 0;
+  color: #496833;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.localitzacio__mapa {
+  flex: 1;
+  min-width: 320px;
+  height: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ---------- SECCIÓ RESERVA ---------- */
+.reserva {
+  background-color: #496833;
+  padding: 70px 40px;
+  text-align: center;
+}
+
+.reserva__titol {
+  margin: 0 0 24px;
+  color: #f2f1ea;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 44px;
+  line-height: 1.2;
+}
+
+.reserva__text {
+  margin: 0 auto 32px;
+  max-width: 480px;
+  color: #f2f1ea;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.reserva__boto {
+  display: inline-block;
+  background-color: #c98a4b;
+  color: #ffffff;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 16px 40px;
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.reserva__boto:hover {
+  background-color: #b87a3d;
+}
+
+/* ---------- SECCIÓ CONTACTE ---------- */
+.contacte {
+  background-color: #F2F3EE;
+  padding: 60px 40px;
+}
+
+.contacte__titol {
+  margin: 0 0 40px;
+  color: #496833;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+}
+
+.contacte__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.contacte__targeta {
+  background-color: #ffffff;
+  border: 1px solid #e2e3db;
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.contacte__icona {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: #496833;
+  border-radius: 50%;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.contacte__icona svg {
+  width: 22px;
+  height: 22px;
+}
+
+.contacte__label {
+  margin: 0 0 8px;
+  color: #496833;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.contacte__valor {
+  margin: 0;
+  color: #496833;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.contacte__valor--link {
+  color: #496833;
+  text-decoration: underline;
+}
+
+.contacte__valor,
+.contacte__label {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 900px) {
+  .contacte__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- SECCIÓ DE PEU DE LA WEB  ---------- */
+.peu {
+  background-color: #496833;
+  padding: 40px 40px;
+  text-align: center;
+}
+
+.peu__linia {
+  margin: 0 0 8px;
+  color: #f2f1ea;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.peu__linia:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- BOTÓ HAMBURGUESA (amagat per defecte a escriptori) ---------- */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 30px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #496833;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.nav-toggle.active span:nth-child(1){
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle.active span:nth-child(2){
+  opacity: 0;
+}
+.nav-toggle.active span:nth-child(3){
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ---------- RESPONSIVE GENERAL ---------- */
+@media (max-width: 700px){
+
+    /* Navbar */
+  .navbar{
+    padding: 12px 20px;
+    gap: 10px;
+  }
+
+  .nav-left{
+    margin-right: auto;
+  }
+
+  .logo-img{
+    height: 50px;
+  }
+
+  .nav-toggle{
+    display: flex;
+  }
+
+  .nav-links{
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background-color: #ffffff;
+    padding: 100px 30px 30px;
+    gap: 26px;
+    box-shadow: -6px 0 20px rgba(0,0,0,0.15);
+    z-index: 1000;
+    margin: 0;
+  }
+
+  .nav-links.active{
+    display: flex;
+  }
+
+  .nav-links a{
+    font-size: 17px;
+  }
+
+  .btn-reserva{
+    padding: 9px 16px;
+    font-size: 14px;
+  }
+
+  /* Hero */
+  .hero-right,
+  .hero-right img{
+    min-height: 260px;
+    height: 260px;
+  }
+
+  .hero-verda-inner{
+    min-height: auto;
+  }
+
+  .hero-left{
+    padding: 36px 6%;
+  }
+
+  .hero-right{
+  order: 1;
+}
+
+.hero-left{
+  order: 2;
+}
+
+  /* Cita */
+  .cita{
+    padding: 50px 24px;
+  }
+
+  .cita__text{
+    font-size: 22px;
+  }
+
+  /* Localització */
+  .localitzacio{
+    padding: 50px 24px;
+    gap: 30px;
+  }
+
+  .localitzacio__titol{
+    font-size: 30px;
+  }
+
+  .localitzacio__text{
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .localitzacio__mapa{
+    height: 280px;
+  }
+
+  .stat{
+    min-width: 120px;
+    padding: 12px 18px;
+  }
+
+  /* Reserva */
+  .reserva{
+    padding: 50px 24px;
+  }
+
+  .reserva__titol{
+    font-size: 28px;
+  }
+
+  .reserva__text{
+    font-size: 16px;
+  }
+
+  .reserva__boto{
+    padding: 14px 30px;
+    font-size: 16px;
+  }
+}
